@@ -4,8 +4,29 @@
     border: solid wheat 2px;
     margin: 5px;
 }
+.buy-button:hover {
+    background-color: #005f46;
+  }
+  
 @media (max-width:600px ){
     .card{
         width: 500px;
+    }
+    .product-card {
+      width: 100%;
+      padding: 16px;
+    }
+  
+    .product-title {
+      font-size: 1.2rem;
+    }
+  
+    .product-price {
+      font-size: 1rem;
+    }
+  
+    .buy-button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
     }
 }
