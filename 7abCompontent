@@ -1,0 +1,57 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement } from '../redux/actions/counterActions';
+
+const Counter = () => {
+  const count = useSelector(state => state.counter.count);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h2>Counter: {count}</h2>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;
+***********************************************************
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTodo, toggleTodo, removeTodo } from '../redux/actions/todoActions';
+
+const TodoList = () => {
+  const [input, setInput] = useState('');
+  const todos = useSelector(state => state.todos);
+  const dispatch = useDispatch();
+
+  const handleAdd = () => {
+    if (input.trim()) {
+      dispatch(addTodo(input));
+      setInput('');
+    }
+  };
+
+  return (
+    <div>
+      <h2>Todo List</h2>
+      <input type="text" value={input} onChange={e => setInput(e.target.value)} placeholder="Enter todo"/>
+      <button onClick={handleAdd}>Add Todo</button>
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id} style={{textDecoration: todo.completed ? 'line-through' : 'none', cursor: 'pointer',}}
+            onClick={() => dispatch(toggleTodo(todo.id))}
+          >
+            {todo.text}
+            <button onClick={(e) => { e.stopPropagation(); dispatch(removeTodo(todo.id)); }}>
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default TodoList;
