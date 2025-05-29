@@ -1,0 +1,11 @@
+.card{
+    height: 300px;
+    width: 300px;
+    border: solid wheat 2px;
+    margin: 5px;
+}
+@media (max-width:600px ){
+    .card{
+        width: 500px;
+    }
+}
