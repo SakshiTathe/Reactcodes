@@ -1,0 +1,72 @@
+********************tabs/_layout.tsx***********
+import { View, Text } from 'react-native'
+import React from 'react'
+import { Tabs } from 'expo-router'
+
+export default function Tabroots() {
+    return (
+        <Tabs>
+            <Tabs.Screen name='index'/>
+            <Tabs.Screen name='about'/>
+            <Tabs.Screen name='profile'/>
+        </Tabs>
+    )
+}
+********************tabs/about.tsx***********
+import { View, Text } from 'react-native'
+import React from 'react'
+
+export default function About() {
+    return (
+        <View>
+            <Text>about</Text>
+        </View>
+    )
+}
+
+
+******************Main _layout.tsx*********************
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import { Stack, Tabs } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import 'react-native-reanimated';
+
+import { useColorScheme } from '@/hooks/useColorScheme';
+
+export default function RootLayout() {
+
+  const colorScheme = useColorScheme();
+  const [loaded] = useFonts({SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  });
+if (!loaded) {return null;}
+
+  return (
+    <Stack>
+      <Stack.Screen name='tabs'/>
+    </Stack>
+  );
+}
+************************************Drawer tips**************
+Install the necessary packages: @react-navigation/native, @react-navigation/drawer, react-native-gesture-handler, react-native-reanimated, react-native-screens, and react-native-safe-area-context.
+For Expo managed projects, use npx expo install react-native-gesture-handler react-native-reanimated. For bare React Native projects, use npm install
+import React from 'react';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeScreen from './screens/HomeScreen';
+import SettingsScreen from './screens/SettingsScreen';
+
+const Drawer = createDrawerNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
