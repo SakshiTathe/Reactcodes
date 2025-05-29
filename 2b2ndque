@@ -1,0 +1,24 @@
+*****************app.js
+<ProductCarts prodname="bag" price={20} />
+
+
+***********ProductCarts.js
+export default App;
+import React,{useState} from 'react'
+
+export const ProductCarts = ({ prodname, price }) => {
+    const [quantity, setQuantity] = useState(0);
+
+    const handleCart = () => {
+        setQuantity(quantity + 1);
+    };
+    return (
+        <div>
+            <h2>{prodname}</h2>
+            <p>Price: ₹{price}</p>
+            <p>Quantity: {quantity}</p>
+            <button onClick={handleCart}>Add to cart</button>
+            <p>Total Price: ₹{quantity * price}</p>
+        </div>
+    )
+}
