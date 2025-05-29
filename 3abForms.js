@@ -6,6 +6,8 @@ export const Forms = () => {
     const [pass, setPassword] = useState("")
     const [feedback, setFeed] = useState("")
     const [errors,setErrors]=useState({})
+    const [submittedData, setSubmittedData] = useState(null);
+    const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,12 +26,28 @@ export const Forms = () => {
             formErrors.feedback = "Feedback must be 20–200 characters long.";
         }
         setErrors(formErrors);
+        
         if(Object.keys(formErrors).length===0){
+            setSubmittedData({ fullName, email, password });
+            setSubmitted(true);
+            setName("");
+            setEmail("");
+            setPassword("");
+            setFeed("");
             alert("submited sucessfully")
-        }
+        }else {
+      setSubmittedData(null);
+    }
     }
 
     return (
+        <div>
+        {submitted ? (
+        <div className="thank-you">
+          <h2>Thank you for your feedback, {name}!</h2>
+          <p>Your feedback: "{feedback}"</p>
+        </div>
+      ) : (
         <form onSubmit={handleSubmit}>
             <label htmlFor='usename'>Name____:</label>
             <input type='text' name='usename' onChange={e=>setName(e.target.value)} value={name} />
@@ -48,5 +66,15 @@ export const Forms = () => {
             <p>{feedback.length}</p>
             <input type='submit' value="Submit" />
         </form>
+                )}
+                {submittedData && (
+        <div className="success">
+          <h3>Form submitted successfully!</h3>
+          <p><strong>Full Name:</strong> {submittedData.fullName}</p>
+          <p><strong>Email:</strong> {submittedData.email}</p>
+          <p><strong>Password:</strong> {submittedData.password}</p>
+        </div>
+      )}
+                </div>
     )
 }
