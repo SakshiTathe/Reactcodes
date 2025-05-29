@@ -47,6 +47,7 @@ export const Counterfun = () => {
     )
 }
 
+
 export const Timmer=()=>{
     const [timer,setTimer]=useState(0)
     useEffect(()=>{
@@ -62,3 +63,37 @@ export const Timmer=()=>{
     )
 }
 export default Counter
+import React, { Component } from 'react';
+
+class TimerClass extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      seconds: 0
+    };
+    this.interval = null;
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.setState(prevState => ({
+        seconds: prevState.seconds + 1
+      }));
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    console.log('Timer unmounted and interval cleared');
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Timer (Class)</h2>
+        <p>Seconds: {this.state.seconds}</p>
+      </div>
+    );
+  }
+}
+export default TimerClass;
