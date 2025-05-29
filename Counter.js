@@ -1,0 +1,64 @@
+import React, { useEffect, useState } from "react";
+class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0,
+        }
+    }
+    increase = () => {
+        this.setState(prev => ({ count: prev.count + 1 }))
+    }
+    componentDidMount() {
+        console.log("Component is mounted")
+    }
+    componentDidUpdate(prevprops, prev) {
+        if (prevprops.count !== this.state.count) {
+            console.log("counter updated")
+        }
+    }
+    render() {
+        return (
+            <div>
+                <button onClick={this.increase}>click</button>
+                <div>dysplay:{this.state.count}</div>
+            </div>
+        )
+    }
+}
+
+export const Counterfun = () => {
+    const [count,setCount]=useState(0)
+    const handleincrease=()=>{
+        setCount(count+1)
+    }
+    useEffect(()=>{
+        console.log("counter Mounted")
+    },[])
+    useEffect(()=>{
+        console.log("counter updated")
+    },[count])
+
+    return (
+        <div>
+            <button onClick={handleincrease}>click</button>
+            <div>dysplayssssss:{count}</div>
+        </div>
+    )
+}
+
+export const Timmer=()=>{
+    const [timer,setTimer]=useState(0)
+    useEffect(()=>{
+        const timers=setInterval(()=>{
+            setTimer(prev=>prev+1)
+        },1000)
+        return () => clearInterval(timers);
+    },[])
+    return(
+        <div>
+            <div>{timer}</div>
+        </div>
+    )
+}
+export default Counter
