@@ -30,3 +30,42 @@
       padding: 8px 16px;
     }
 }
+
+.nav-link:hover {
+    background-color: #005f46;
+  }
+  
+  .nav-link.active {
+    background-color: #004b36;
+  }
+  
+  /* Hamburger icon */
+  .hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100vw;
+      background-color: #007b5e;
+      padding: 10px 0;
+      z-index: 100;
+    }
+  
+    .navbar-links.active {
+      display: flex;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  }
+  
