@@ -1,4 +1,13 @@
 npm install --save-dev jest @testing-library/react @testing-library/jest-dom
+npx create-react-app
+npm start
+npm test
+ or
+npm test filename
+.........................
+npm install -g expo-cli
+npx create-expo-app@latest
+npm start/npx expo start
 ***********************************************************
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
