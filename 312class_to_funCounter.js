@@ -69,21 +69,21 @@ class TimerClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      seconds: 0
+      count: 0
     };
-    this.interval = null;
+    this.timer = null;
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
+    this.timer = setInterval(() => {
       this.setState(prevState => ({
-        seconds: prevState.seconds + 1
+        count: prevState.count + 1
       }));
     }, 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    clearInterval(this.timer);
     console.log('Timer unmounted and interval cleared');
   }
 
@@ -91,7 +91,7 @@ class TimerClass extends Component {
     return (
       <div>
         <h2>Timer (Class)</h2>
-        <p>Seconds: {this.state.seconds}</p>
+        <p>Seconds: {this.state.count}</p>
       </div>
     );
   }
