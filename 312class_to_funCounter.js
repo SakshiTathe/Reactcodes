@@ -12,8 +12,8 @@ class Counter extends React.Component {
     componentDidMount() {
         console.log("Component is mounted")
     }
-    componentDidUpdate(prevprops, prev) {
-        if (prevprops.count !== this.state.count) {
+    componentDidUpdate(prevprops, prevstate) {
+        if (prevstate.count !== this.state.count) {
             console.log("counter updated")
         }
     }
